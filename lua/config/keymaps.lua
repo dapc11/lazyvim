@@ -41,3 +41,9 @@ map("n", "<C-g>", vim.cmd.Git, { desc = "Git" })
 
 map("n", "<leader>s", "<C-W>s", { desc = "Split window below" })
 map("n", "<leader>v", "<C-W>v", { desc = "Split window right" })
+
+-- Resize window using <ctrl> arrow keys
+map("n", "<C-Up>", "<cmd>resize +8<cr>", { desc = "Increase window height" })
+map("n", "<C-Down>", "<cmd>resize -8<cr>", { desc = "Decrease window height" })
+map("n", "<C-Left>", "<cmd>vertical resize -8<cr>", { desc = "Decrease window width" })
+map("n", "<C-Right>", "<cmd>vertical resize +8<cr>", { desc = "Increase window width" })
