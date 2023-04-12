@@ -8,6 +8,16 @@ parser_config.gotmpl = {
   filetype = "gotmpl",
   used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml", "tpl", "yml" },
 }
+vim.filetype.add({
+  extension = {
+    tpl = "gotmpl",
+  },
+  pattern = {
+    [".*/templates/.*tpl"] = "gotmpl",
+    [".*/templates/.*yaml"] = "gotmpl",
+    [".*/templates/.*.yml"] = "gotmpl",
+  },
+})
 
 return {
   "nvim-treesitter/nvim-treesitter",
