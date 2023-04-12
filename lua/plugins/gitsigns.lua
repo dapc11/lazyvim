@@ -18,8 +18,27 @@ return {
       end
 
       -- stylua: ignore start
-      map("n", "]c", gs.next_hunk, "Next Hunk")
-      map("n", "[c", gs.prev_hunk, "Prev Hunk")
+      vim.keymap.set("n", "<c", function()
+        if vim.wo.diff then
+          return "]czz"
+        end
+        vim.schedule(function()
+          require("gitsigns").next_hunk()
+          vim.fn.feedkeys("zz")
+        end)
+        return "<Ignore>"
+      end, { expr = true })
+
+      vim.keymap.set("n", ">c", function()
+        if vim.wo.diff then
+          return "[czz"
+        end
+        vim.schedule(function()
+          require("gitsigns").prev_hunk()
+          vim.fn.feedkeys("zz")
+        end)
+        return "<Ignore>"
+      end, { expr = true })
       map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
       map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
       map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")

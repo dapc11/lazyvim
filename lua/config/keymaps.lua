@@ -33,6 +33,10 @@ omap > [
 omap < ]
 xmap > [
 xmap < ]
+cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
+cnoreabbrev <expr> Q ((getcmdtype() is# ':' && getcmdline() is# 'Q')?('q'):('Q'))
+cnoreabbrev <expr> WQ ((getcmdtype() is# ':' && getcmdline() is# 'WQ')?('wq'):('WQ'))
+cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('Wq'))
 ]])
 
 -- git
@@ -47,3 +51,4 @@ map("n", "<C-Up>", "<cmd>resize +8<cr>", { desc = "Increase window height" })
 map("n", "<C-Down>", "<cmd>resize -8<cr>", { desc = "Decrease window height" })
 map("n", "<C-Left>", "<cmd>vertical resize -8<cr>", { desc = "Decrease window width" })
 map("n", "<C-Right>", "<cmd>vertical resize +8<cr>", { desc = "Increase window width" })
+map({ "v", "n" }, "p", '"_dP')
