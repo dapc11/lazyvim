@@ -1,4 +1,11 @@
-# 💤 LazyVim
+# Dapc LazyVim
 
-A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
-Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
+A compromise between Lunarvims abstraction level, and the laziness to not maintain a complete Neovim setup by myself.
+
+Focus on usability and coding mainly in:
+
+- Go
+- Python
+- Java
+- Kubernetes (Helm)
+
