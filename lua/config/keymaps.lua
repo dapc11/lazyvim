@@ -26,14 +26,14 @@ map("n", "[d", function()
 end, { desc = "Previous Diagnostic" })
 
 -- Unimapired
-vim.cmd [[
+vim.cmd([[
 nmap > [
 nmap < ]
 omap > [
 omap < ]
 xmap > [
 xmap < ]
-]]
+]])
 
 -- git
 map("n", "<leader>gg", vim.cmd.Git, { desc = "Git" })
