@@ -38,3 +38,6 @@ xmap < ]
 -- git
 map("n", "<leader>gg", vim.cmd.Git, { desc = "Git" })
 map("n", "<C-g>", vim.cmd.Git, { desc = "Git" })
+
+map("n", "<leader>s", "<C-W>s", { desc = "Split window below" })
+map("n", "<leader>v", "<C-W>v", { desc = "Split window right" })
