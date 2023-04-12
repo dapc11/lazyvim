@@ -35,35 +35,21 @@ return {
     ---@type lspconfig.options
     servers = {
       jsonls = {},
+      dockerls = {},
+      vimls = {},
+      gopls = {
+        settings = {
+          gopls = require("plugins.lsp_servers.gopls"),
+        },
+      },
       pyright = {
         settings = {
-          python = {
-            analysis = {
-              diagnosticSeverityOverrides = {
-                reportOptionalMemberAccess = "none",
-                reportMissingImports = "none",
-              },
-              autoImportCompletions = true,
-              typeCheckingMode = "off",
-              autoSearchPaths = true,
-              useLibraryCodeForTypes = true,
-              diagnosticMode = "openFilesOnly",
-            },
-            venvPath = "~/.virtualenvs/",
-            pythonPath = "python3",
-          },
+          python = require("plugins.lsp_servers.pyright"),
         },
       },
       lua_ls = {
         settings = {
-          Lua = {
-            workspace = {
-              checkThirdParty = false,
-            },
-            completion = {
-              callSnippet = "Replace",
-            },
-          },
+          Lua = require("plugins.lsp_servers.luals"),
         },
       },
     },
