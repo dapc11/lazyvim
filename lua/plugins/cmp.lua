@@ -17,6 +17,23 @@ return {
       return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
     end
 
+    cmp.setup.filetype({ "gitcommit" }, {
+      sources = cmp.config.sources({
+        {
+          name = "buffer",
+          option = {
+            get_bufnrs = function()
+              local bufs = {}
+              for _, win in ipairs(vim.api.nvim_list_wins()) do
+                bufs[vim.api.nvim_win_get_buf(win)] = true
+              end
+              return vim.tbl_keys(bufs)
+            end,
+          },
+        },
+      }),
+    })
+
     return {
       completion = {
         completeopt = "menu,menuone,noinsert",
@@ -62,10 +79,15 @@ return {
         end, { "i", "s" }),
       }),
       sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "buffer" },
-        { name = "path" },
+        {
+          name = "nvim_lsp",
+          entry_filter = function(entry, ctx)
+            return require("cmp").lsp.CompletionItemKind.Text ~= entry:get_kind()
+          end,
+        },
+        { name = "buffer", max_item_count = 5, keyword_length = 5 },
+        { name = "path", max_item_count = 5 },
+        { name = "luasnip", max_item_count = 3 },
       }),
       formatting = {
         format = function(_, item)
