@@ -13,5 +13,28 @@ local function map(mode, lhs, rhs, opts)
   end
 end
 
+-- LSP
+map("n", "]d", function()
+  vim.diagnostic.goto_next({
+    float = false,
+  })
+end, { desc = "Next Diagnostic" })
+map("n", "[d", function()
+  vim.diagnostic.goto_prev({
+    float = false,
+  })
+end, { desc = "Previous Diagnostic" })
+
+-- Unimapired
+vim.cmd [[
+nmap > [
+nmap < ]
+omap > [
+omap < ]
+xmap > [
+xmap < ]
+]]
+
 -- git
 map("n", "<leader>gg", vim.cmd.Git, { desc = "Git" })
+map("n", "<C-g>", vim.cmd.Git, { desc = "Git" })
