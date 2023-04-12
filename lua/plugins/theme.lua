@@ -3,9 +3,7 @@ return {
     "dapc11/github-nvim-theme",
     lazy = false,
     config = function()
-      require("github-theme").setup({
-        theme_style = "dark",
-      })
+      require("github-theme").setup({})
     end,
   },
   {
