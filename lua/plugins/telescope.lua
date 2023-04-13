@@ -6,11 +6,26 @@ local previewers = require("telescope.previewers")
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
-    "nvim-telescope/telescope-fzf-native.nvim",
-    build = "make",
-    config = function()
-      require("telescope").load_extension("fzf")
-    end,
+    {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+      config = function()
+        require("telescope").load_extension("fzf")
+      end,
+    },
+    {
+      "s1n7ax/nvim-window-picker",
+      version = "v1.*",
+      opts = {
+        selection_chars = "abcdefghklmnopqrstuvw",
+        fg_color = "#cdd9e5",
+        current_win_hl_color = "#347d39",
+        other_win_hl_color = "#316dca",
+      },
+      config = function(_, opts)
+        require("window-picker").setup(opts)
+      end,
+    },
   },
   cmd = "Telescope",
   version = false, -- telescope did only one release, so use HEAD for now
@@ -57,10 +72,10 @@ return {
     { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
     { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "status" },
     -- search
-    { "<C-f>", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
+    { "<leader>ss", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
     { "<leader>sd", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
     {
-      "<leader><leader>",
+      "<leader><space>",
       Util.telescope("live_grep", { path_display = { "truncate", shorten = { len = 3, exclude = { 1, -1 } } } }),
       desc = "Grep (root dir)",
     },
@@ -73,7 +88,7 @@ return {
     { "<leader>sw", Util.telescope("grep_string"), desc = "Word (root dir)" },
     { "<leader>sW", Util.telescope("grep_string", { cwd = false }), desc = "Word (cwd)" },
     {
-      "<leader>ss",
+      "<leader>sD",
       Util.telescope("lsp_document_symbols", {
         symbols = {
           "Class",
@@ -139,6 +154,21 @@ return {
           ["<C-h>"] = actions.select_horizontal,
           ["<C-v>"] = actions.select_vertical,
           ["<C-o>"] = actions.select_tab,
+          ["<C-g>"] = function(prompt_bufnr)
+            -- Use nvim-window-picker to choose the window by dynamically attaching a function
+            local action_set = require("telescope.actions.set")
+            local action_state = require("telescope.actions.state")
+
+            local picker = action_state.get_current_picker(prompt_bufnr)
+            picker.get_selection_window = function(picker, _)
+              local picked_window_id = require("window-picker").pick_window() or vim.api.nvim_get_current_win()
+              -- Unbind after using so next instance of the picker acts normally
+              picker.get_selection_window = nil
+              return picked_window_id
+            end
+
+            return action_set.edit(prompt_bufnr, "edit")
+          end,
         },
         n = {
           ["q"] = function(...)
