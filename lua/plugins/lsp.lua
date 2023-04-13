@@ -59,7 +59,12 @@ return {
     -- return true if you don't want this server to be setup with lspconfig
     ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
     setup = {
-      jdtls = require("plugins.lsp_servers.jdtls").Jdtls,
+      jdtls = function(_, opts)
+        vim.api.nvim_create_autocmd("FileType", {
+          pattern = "java",
+          callback = require("plugins.lsp_servers.jdtls").Jdtls,
+        })
+      end,
     },
   },
   ---@param opts PluginLspOpts
