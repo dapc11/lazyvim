@@ -39,6 +39,7 @@ return {
       dockerls = {},
       vimls = {},
       jdtls = {},
+      helm_ls = {},
       gopls = {
         settings = {
           gopls = require("plugins.lsp_servers.gopls"),
