@@ -16,7 +16,6 @@ return {
       long_message_to_split = true,
     },
   },
-  -- stylua: ignore
   keys = {
     {
       "<S-Enter>",

@@ -1,6 +1,6 @@
 return {
   "monaqa/dial.nvim",
-  config = function()
+  keys = function()
     local status_ok, dial_config = pcall(require, "dial.config")
     if not status_ok then
       print("Failed to setup dial.nvim.")
@@ -57,9 +57,11 @@ return {
 
     local map = require("dial.map")
 
-    vim.keymap.set("n", "<C-a>", map.inc_normal("mygroup"), { noremap = true })
-    vim.keymap.set("n", "<C-x>", map.dec_normal("mygroup"), { noremap = true })
-    vim.keymap.set("v", "<C-a>", map.inc_normal("visual"), { noremap = true })
-    vim.keymap.set("v", "<C-x>", map.dec_normal("visual"), { noremap = true })
+    return {
+      { "<C-a>", map.inc_normal("mygroup"), mode = "n", noremap = true, desc = "Dial increment" },
+      { "<C-x>", map.dec_normal("mygroup"), mode = "n", noremap = true, desc = "Dial decrement" },
+      { "<C-a>", map.inc_normal("mygroup"), mode = "v", noremap = true, desc = "Dial increment" },
+      { "<C-x>", map.dec_normal("mygroup"), mode = "v", noremap = true, desc = "Dial decrement" },
+    }
   end,
 }

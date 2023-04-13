@@ -1,7 +1,6 @@
 return {
   "echasnovski/mini.surround",
   keys = function(_, keys)
-    -- Populate the keys based on the user's options
     local plugin = require("lazy.core.config").spec.plugins["mini.surround"]
     local opts = require("lazy.core.plugin").values(plugin, "opts", false)
     local mappings = {
@@ -30,7 +29,6 @@ return {
     },
   },
   config = function(_, opts)
-    -- use gz mappings instead of s to prevent conflict with leap
     require("mini.surround").setup(opts)
   end,
 }
