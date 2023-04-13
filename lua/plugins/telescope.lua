@@ -15,7 +15,6 @@ return {
   keys = {
     { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
     { "<leader>/", Util.telescope("live_grep"), desc = "Find in Files (Grep)" },
-    { "<C-p>", require("telescope").extensions.projects.projects, desc = "Projects" },
     { "<leader>n", Util.telescope("files"), desc = "Find Files" },
     {
       "<leader>N",
