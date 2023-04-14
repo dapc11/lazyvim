@@ -2,6 +2,18 @@ local Util = require("lazyvim.util")
 local actions = require("telescope.actions")
 local action_layout = require("telescope.actions.layout")
 local previewers = require("telescope.previewers")
+local action_state = require("telescope.actions.state")
+
+local multi_select_action = function(pb)
+  local picker = action_state.get_current_picker(pb)
+  local multi = picker:get_multi_selection()
+  actions.select_default(pb) -- the normal enter behaviour
+  for _, j in pairs(multi) do
+    if j.path ~= nil then -- is it a file -> open it as well:
+      vim.cmd(string.format("%s %s", "edit", j.path))
+    end
+  end
+end
 
 return {
   "nvim-telescope/telescope.nvim",
@@ -151,7 +163,6 @@ return {
           ["<tab>"] = actions.toggle_selection + actions.move_selection_next,
           ["<C-Down>"] = actions.cycle_history_next,
           ["<C-Up>"] = actions.cycle_history_prev,
-          ["<CR>"] = actions.select_default,
           ["<C-h>"] = actions.select_horizontal,
           ["<C-v>"] = actions.select_vertical,
           ["<C-o>"] = actions.select_tab,
@@ -170,6 +181,8 @@ return {
 
             return action_set.edit(prompt_bufnr, "edit")
           end,
+          -- ["<CR>"] = actions.select_default,
+          ["<CR>"] = multi_select_action,
         },
         n = {
           ["q"] = function(...)
@@ -182,6 +195,7 @@ return {
           ["<tab>"] = actions.toggle_selection + actions.move_selection_next,
           ["<C-Down>"] = actions.cycle_history_next,
           ["<C-Up>"] = actions.cycle_history_prev,
+          ["<CR>"] = multi_select_action,
         },
       },
       buffer_previewer_maker = function(filepath, bufnr, opts)
