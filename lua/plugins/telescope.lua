@@ -44,7 +44,7 @@ return {
   keys = {
     { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
     { "<leader>/", Util.telescope("live_grep"), desc = "Find in Files (Grep)" },
-    { "<leader>n", Util.telescope("files"), desc = "Find Files" },
+    { "<leader>n", Util.telescope("git_files"), desc = "Find Files" },
     {
       "<leader>N",
       Util.telescope("git_files", { git_command = { "git", "ls-files", "--modified", "--exclude-standard" } }),
