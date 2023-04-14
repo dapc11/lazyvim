@@ -13,13 +13,19 @@ return {
     },
     { "mfussenegger/nvim-jdtls" },
   },
+  init = function()
+    local keys = require("lazyvim.plugins.lsp.keymaps").get()
+    -- add a keymap
+    keys[#keys + 1] = { "<C-e>", vim.diagnostic.open_float, mode = { "n", "i" }, desc = "Open diagnostic float" }
+  end,
   ---@class PluginLspOpts
   opts = {
     -- options for vim.diagnostic.config()
     diagnostics = {
       underline = true,
       update_in_insert = false,
-      virtual_text = { spacing = 4, prefix = "●" },
+      virtual_text = false,
+      -- virtual_text = { spacing = 4, prefix = "●" },
       severity_sort = true,
     },
     -- Automatically format on save
