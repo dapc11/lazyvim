@@ -9,7 +9,7 @@ return {
       },
     },
     messages = { enabled = false },
-    notify = { enabled = false },
+    notify = { enabled = true },
     presets = {
       bottom_search = true,
       command_palette = true,
