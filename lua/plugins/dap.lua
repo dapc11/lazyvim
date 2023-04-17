@@ -56,6 +56,75 @@ return {
           }
         end,
       },
+      {
+        "leoluz/nvim-dap-go",
+        keys = {
+          {
+            "<leader>dag",
+            function()
+              require("dap-go").debug_test()
+            end,
+            desc = "Debug Go Method",
+          },
+        },
+        config = function(_, opts)
+          local dap = require("dap")
+          dap.configurations.go = {
+            {
+              type = "go",
+              name = "Debug",
+              request = "launch",
+              program = "${file}",
+            },
+            {
+              type = "go",
+              name = "Debug test", -- configuration for debugging test files
+              request = "launch",
+              mode = "test",
+              program = "${file}",
+            },
+            -- works with go.mod packages and sub packages
+            {
+              type = "go",
+              name = "Debug test (go.mod)",
+              request = "launch",
+              mode = "test",
+              program = "./${relativeFileDirname}",
+            },
+          }
+          dap.adapters.go = function(callback, config)
+            local stdout = vim.loop.new_pipe(false)
+            local handle
+            local pid_or_err
+            local port = 38697
+            local opts = {
+              stdio = { nil, stdout },
+              args = { "dap", "-l", "127.0.0.1:" .. port },
+              detached = true,
+            }
+            handle, pid_or_err = vim.loop.spawn("dlv", opts, function(code)
+              stdout:close()
+              handle:close()
+              if code ~= 0 then
+                print("dlv exited with code", code)
+              end
+            end)
+            assert(handle, "Error running dlv: " .. tostring(pid_or_err))
+            stdout:read_start(function(err, chunk)
+              assert(not err, err)
+              if chunk then
+                vim.schedule(function()
+                  require("dap.repl").append(chunk)
+                end)
+              end
+            end)
+            -- Wait for delve to start
+            vim.defer_fn(function()
+              callback({ type = "server", host = "127.0.0.1", port = port })
+            end, 100)
+          end
+        end,
+      },
     },
   },
 
@@ -72,6 +141,11 @@ return {
 
   config = function()
     local Config = require("lazyvim.config")
+    local dap = require("dap")
+    dap.defaults.fallback.external_terminal = {
+      command = "wezterm",
+      args = { "-e" },
+    }
     vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
     require("dap.repl").commands = vim.tbl_extend("force", require("dap.repl").commands, {
       continue = { ".continue", "c" },

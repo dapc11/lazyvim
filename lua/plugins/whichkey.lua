@@ -7,7 +7,7 @@ return {
   config = function(_, opts)
     local wk = require("which-key")
     wk.setup(opts)
-    local keymaps = {
+    wk.register({
       mode = { "n", "v" },
       ["g"] = { name = "+goto" },
       ["gz"] = { name = "+surround" },
@@ -25,8 +25,8 @@ return {
       ["<leader>w"] = { name = "+windows" },
       ["<leader>t"] = { name = "+test" },
       ["<leader>x"] = { name = "+diagnostics/quickfix" },
-    }
-    keymaps["<leader>sn"] = { name = "+noice" }
-    wk.register(keymaps)
+      ["<leader>z"] = { name = "+zettelkasten" },
+      ["<leader>sn"] = { name = "+noice" },
+    })
   end,
 }
