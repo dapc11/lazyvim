@@ -170,6 +170,9 @@ function M.Jdtls()
       vim.cmd.JdtUpdateConfig,
       { buffer = bufnr, desc = "Update Config", silent = true }
     )
+
+    require("jdtls.dap").setup_dap_main_class_configs()
+    jdtls.setup_dap({ hotcodereplace = "auto" })
   end
 
   vim.cmd(
