@@ -4,26 +4,12 @@ return {
   dependencies = {
     -- fancy UI for the debugger
     {
-      "rcarriga/nvim-dap-ui",
-      -- stylua: ignore
-      keys = {
-        { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" }
+      {
+        "rcarriga/nvim-dap-ui",
+        config = function()
+          require("dapui").setup()
+        end,
       },
-      opts = {},
-      config = function(_, opts)
-        local dap = require("dap")
-        local dapui = require("dapui")
-        dapui.setup(opts)
-        dap.listeners.after.event_initialized["dapui_config"] = function()
-          dapui.open({})
-        end
-        dap.listeners.before.event_terminated["dapui_config"] = function()
-          dapui.close({})
-        end
-        dap.listeners.before.event_exited["dapui_config"] = function()
-          dapui.close({})
-        end
-      end,
       {
         "mfussenegger/nvim-dap-python",
         keys = {
@@ -130,23 +116,51 @@ return {
 
   -- stylua: ignore
   keys = {
-    { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "Toggle Breakpoint" },
-    { "<leader>dB", function() require("dap").set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, desc = "Breakpoint Condition" },
-    { "<leader>dc", function() require("dap").continue() end, desc = "Continue" },
-    { "<leader>do", function() require("dap").step_over() end, desc = "Step Over" },
-    { "<leader>di", function() require("dap").step_into() end, desc = "Step Into" },
-    { "<leader>dw", function() require("dap.ui.widgets").hover() end, desc = "Widgets" },
-    { "<leader>dr", function() require("dap").repl.open() end, desc = "Repl" },
+    -- Running the program
+    { "<leader>dr", "<cmd>Telescope dap configurations<cr>", desc = "run" },
+    { "<leader>dl", function() require("dap").run_last() end, desc = "run last" },
+    { "<leader>dR", function() require("dap").restart() end, desc = "restart" },
+    { "<leader>dq", function() require("dap").terminate() end, desc = "terminate" },
+    -- steps
+    { "<leader>dp", function() require("dap").step_back() end, desc = "step back" }, -- [p]revious
+    { "<leader>dn", function() require("dap").step_over() end, desc = "step over" }, -- [n]ext
+    { "<leader>di", function() require("dap").step_into() end, desc = "step into" }, -- [i]nto
+    { "<leader>do", function() require("dap").step_out() end, desc = "step out" },   -- [o]ut, [u]ninto
+    { "<leader>dc", function() require("dap").continue() end, desc = "continue" },   -- Run until breakpoint or program termination
+    { "<leader>dh", function() require("dap").run_to_cursor() end, desc = "step to here(cursor)" }, -- step to [h]ere
+    -- breakpoints
+    { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "[B] toggle breakpoint" },
+    { "<leader>da", "<cmd>Telescope dap list_breakpoints<cr>", desc = "[B] show all breakpoints" },
+    { "<leader>dx", function() require("dap").clear_breakpoints() end, desc = "[B] removes all breakpoints" },
+    { "<leader>dB", function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end, desc = "[B] conditional breakpoint" },
+    { "<leader>dL", function() require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: ")) end, desc = "[B] logpoint" },
+    -- dapui
+    { "<leader>du", function() require("dapui").toggle() end, desc = "toggle dapui" },
+    -- watch expressions
+    { "<A-e>", function() require("dapui").eval() end, desc = "eval (<A-e>)", mode = { "n", "v" } },
+    { "<leader>dk", function() require("dapui").eval() end, desc = "eval (<A-e>)", mode = { "n", "v" } },
+    { "<leader>dK", function() require("dap.ui.widgets").preview() end, desc = "preview expression"},
   },
 
   config = function()
-    local Config = require("lazyvim.config")
     local dap = require("dap")
     dap.defaults.fallback.external_terminal = {
       command = "wezterm",
       args = { "-e" },
     }
-    vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
+
+    -- https://microsoft.github.io/vscode-codicons/dist/codicon.html
+    vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "", linehl = "", numhl = "" })
+    vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "", linehl = "", numhl = "" })
+    vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "", linehl = "", numhl = "" }) -- debug-breakpoint-conditional
+    vim.fn.sign_define("DapLogPoint", { text = "", texthl = "", linehl = "", numhl = "" })
+    vim.fn.sign_define("DapStopped", { text = "", texthl = "", linehl = "", numhl = "" })
+
+    require("utils").on_ft("dap-repl", function(event)
+      vim.api.nvim_buf_set_option(event.buf, "buflisted", false)
+      require("dap.ext.autocompl").attach()
+    end)
+
     require("dap.repl").commands = vim.tbl_extend("force", require("dap.repl").commands, {
       continue = { ".continue", "c" },
       next_ = { ".next", "n" },
@@ -167,12 +181,5 @@ return {
         end,
       },
     })
-    for name, sign in pairs(Config.icons.dap) do
-      sign = type(sign) == "table" and sign or { sign }
-      vim.fn.sign_define(
-        "Dap" .. name,
-        { text = sign[1], texthl = sign[2] or "DiagnosticInfo", linehl = sign[3], numhl = sign[3] }
-      )
-    end
   end,
 }

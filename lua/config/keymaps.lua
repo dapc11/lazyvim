@@ -2,30 +2,45 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
-local function map(mode, lhs, rhs, opts)
-  local keys = require("lazy.core.handler").handlers.keys
-  ---@cast keys LazyKeysHandler
-  -- do not create the keymap if a lazy keys handler exists
-  if not keys.active[keys.parse({ lhs, mode = mode }).id] then
-    opts = opts or {}
-    opts.silent = opts.silent ~= false
-    vim.keymap.set(mode, lhs, rhs, opts)
-  end
-end
+local map = vim.keymap.set
+local del_map = vim.keymap.del
 
--- LSP
-map("n", "]d", function()
-  vim.diagnostic.goto_next({
-    float = false,
-  })
-end, { desc = "Next Diagnostic" })
-map("n", "[d", function()
-  vim.diagnostic.goto_prev({
-    float = false,
-  })
-end, { desc = "Previous Diagnostic" })
+-- keymaps delete
+del_map("n", "<S-h>")
+del_map("n", "<S-l>")
+del_map("v", "<")
+del_map("v", ">")
+del_map("n", "<leader>ft")
+del_map("n", "<leader>fT")
 
--- Unimapired
+-- Readline-style keymap for normal mode
+map("i", "<C-A>", "<Home>")
+map("i", "<C-E>", "<ESC><S-A>")
+-- <C-B> <C-F> also configured in ui/noise.nvim
+map("i", "<C-B>", "<Left>")
+map("i", "<C-F>", "<Right>")
+-- :h i_CTRL-H
+map("i", "<C-D>", "<Del>")
+-- :help i_CTRL-W
+-- :help i_CTRL-U
+map("i", "<C-K>", "<C-O>D")
+-- " :help i_CTRL-Y Insert the character which is above the cursor
+
+-- Readline-style keymap for command-line mode
+map("c", "<C-A>", "<Home>")
+-- :help c_CTRL-E
+map("c", "<C-B>", "<Left>")
+map("c", "<C-F>", "<Right>")
+-- :help i_CTRL-H
+map("c", "<C-D>", "<Del>")
+-- :help c_CTRL-W
+-- :help c_CTRL-U
+-- cnoremap <C-K> <C-\>e getcmdpos() == 1 ? '' : getcmdline()[:getcmdpos()-2]<cr>
+-- :help c_CTRL-\_e Evaluate {expr} and replace the whole command line with the result.
+map("c", "<C-K>", "<C-\\>e getcmdpos() == 1 ? '' : getcmdline()[:getcmdpos()-2]<cr>")
+-- :help c_CTRL-Y
+
+-- Unimpaired
 vim.cmd([[
 nmap > [
 nmap < ]
