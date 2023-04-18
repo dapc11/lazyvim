@@ -81,8 +81,9 @@ return {
       desc = "Find in Repo Files",
     },
     -- git
-    { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
-    { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "status" },
+    { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Commits" },
+    { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "Status" },
+    { "<leader>gB", "<cmd>Telescope git_branches<CR>", desc = "Branches" },
     -- search
     { "<C-s>", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
     { "<leader>ss", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },

@@ -54,10 +54,6 @@ cnoreabbrev <expr> WQ ((getcmdtype() is# ':' && getcmdline() is# 'WQ')?('wq'):('
 cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('Wq'))
 ]])
 
--- git
-map("n", "<leader>gg", vim.cmd.Git, { desc = "Git" })
-map("n", "<C-g>", vim.cmd.Git, { desc = "Git" })
-
 map("n", "<leader>v", "<C-W>v", { desc = "Split window right" })
 
 -- Resize window using <ctrl> arrow keys

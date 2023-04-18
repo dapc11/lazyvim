@@ -51,17 +51,17 @@ return {
       helm_ls = {},
       gopls = {
         settings = {
-          gopls = require("plugins.lsp_servers.gopls"),
+          gopls = require("plugins.coding.lsp_servers.gopls"),
         },
       },
       pyright = {
         settings = {
-          python = require("plugins.lsp_servers.pyright"),
+          python = require("plugins.coding.lsp_servers.pyright"),
         },
       },
       lua_ls = {
         settings = {
-          Lua = require("plugins.lsp_servers.luals"),
+          Lua = require("plugins.coding.lsp_servers.luals"),
         },
       },
     },
@@ -69,7 +69,7 @@ return {
       jdtls = function(_, opts)
         vim.api.nvim_create_autocmd("FileType", {
           pattern = "java",
-          callback = require("plugins.lsp_servers.jdtls").Jdtls,
+          callback = require("plugins.coding.lsp_servers.jdtls").Jdtls,
         })
       end,
     },

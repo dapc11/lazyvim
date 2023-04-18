@@ -1,4 +1,4 @@
--- Autocmds are automatically loaded on the VeryLazy event
+-- Autocmds are automatically loaded on the VeryLazy eent
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
 -- Disable autoformat for lua files
@@ -23,6 +23,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "lspinfo",
     "man",
     "notify",
+    "git",
     "qf",
     "fugitive",
     "query", -- :InspectTree

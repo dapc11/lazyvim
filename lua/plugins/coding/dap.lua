@@ -33,7 +33,7 @@ return {
           require("dap-python").setup("/usr/bin/python3")
           require("dap-python").test_runner = "pytest"
           local dap = require("dap")
-          local venv = os.getenv("VIRTUAL_ENV")
+          local venv = os.getenv("VIRTUAL_ENV") or "/usr"
           local python_executable = venv .. "/bin/python"
           dap.adapters.python = {
             type = "executable",
