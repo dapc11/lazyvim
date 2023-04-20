@@ -1,11 +1,15 @@
 return {
   "dapc11/project.nvim",
   dependency = { "nvim-telescope/telescope.nvim" },
+  event = "VeryLazy",
   config = function(_, opts)
     require("project_nvim").setup(opts)
     require("telescope").load_extension("projects")
-    vim.keymap.set("n", "<C-p>", "<Cmd>Telescope projects<CR>", { desc = "Projects" })
   end,
+  keys = {
+    { "<leader>fp", "<Cmd>Telescope projects<CR>", desc = "Projects" },
+    { "<C-p>", "<Cmd>Telescope projects<CR>", desc = "Projects" },
+  },
   opts = {
     active = true,
     on_config_done = nil,

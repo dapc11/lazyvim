@@ -3,15 +3,7 @@ return {
   opts = function()
     local nls = require("null-ls")
     return {
-      root_dir = require("null-ls.utils").root_pattern(
-        ".null-ls-root",
-        ".neoconf.json",
-        "Makefile",
-        ".git",
-        "ruleset2.0.yaml",
-        "pom.xml",
-        "README.md"
-      ),
+      root_dir = require("null-ls.utils").root_pattern(".git"),
       sources = {
         nls.builtins.code_actions.gitsigns,
         nls.builtins.diagnostics.trail_space.with({

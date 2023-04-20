@@ -6,10 +6,6 @@ local map = vim.keymap.set
 local del_map = vim.keymap.del
 
 -- keymaps delete
-del_map("n", "<S-h>")
-del_map("n", "<S-l>")
-del_map("v", "<")
-del_map("v", ">")
 del_map("n", "<leader>ft")
 del_map("n", "<leader>fT")
 
