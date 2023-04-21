@@ -9,6 +9,11 @@ local del_map = vim.keymap.del
 del_map("n", "<leader>ft")
 del_map("n", "<leader>fT")
 
+map("v", "<Tab>", ">gv")
+map("v", "<S-Tab>", "<gv")
+map("i", "<S-Tab>", "<C-d>")
+map("i", "<Tab>", "<C-t>")
+
 -- Readline-style keymap for normal mode
 map("i", "<C-A>", "<Home>")
 map("i", "<C-E>", "<ESC><S-A>")
@@ -48,7 +53,11 @@ cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W')
 cnoreabbrev <expr> Q ((getcmdtype() is# ':' && getcmdline() is# 'Q')?('q'):('Q'))
 cnoreabbrev <expr> WQ ((getcmdtype() is# ':' && getcmdline() is# 'WQ')?('wq'):('WQ'))
 cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('Wq'))
+
+command BufOnly silent! execute "%bd|e#|bd#"
 ]])
+
+map("n", "<leader>X", "<cmd>BufOnly<CR>", { desc = "Delete other buffers" })
 
 map("n", "<leader>v", "<C-W>v", { desc = "Split window right" })
 
@@ -59,3 +68,24 @@ map("n", "<C-Left>", "<cmd>vertical resize -8<cr>", { desc = "Decrease window wi
 map("n", "<C-Right>", "<cmd>vertical resize +8<cr>", { desc = "Increase window width" })
 map("v", "p", '"_dP')
 map("n", "<C-s>", "<cmd>w<cr>", { desc = "Save" })
+map("n", "<c", function()
+  if vim.wo.diff then
+    return "]czz"
+  end
+  vim.schedule(function()
+    require("gitsigns").next_hunk()
+    vim.fn.feedkeys("zz")
+  end)
+  return "<Ignore>"
+end, { expr = true })
+
+map("n", ">c", function()
+  if vim.wo.diff then
+    return "[czz"
+  end
+  vim.schedule(function()
+    require("gitsigns").prev_hunk()
+    vim.fn.feedkeys("zz")
+  end)
+  return "<Ignore>"
+end, { expr = true })

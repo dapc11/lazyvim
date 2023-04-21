@@ -17,27 +17,6 @@ return {
       end
 
       -- stylua: ignore start
-      vim.keymap.set("n", "<c", function()
-        if vim.wo.diff then
-          return "]czz"
-        end
-        vim.schedule(function()
-          require("gitsigns").next_hunk()
-          vim.fn.feedkeys("zz")
-        end)
-        return "<Ignore>"
-      end, { expr = true })
-
-      vim.keymap.set("n", ">c", function()
-        if vim.wo.diff then
-          return "[czz"
-        end
-        vim.schedule(function()
-          require("gitsigns").prev_hunk()
-          vim.fn.feedkeys("zz")
-        end)
-        return "<Ignore>"
-      end, { expr = true })
       map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
       map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
       map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")

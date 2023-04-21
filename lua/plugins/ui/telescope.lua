@@ -15,6 +15,19 @@ local multi_select_action = function(pb)
   end
 end
 
+function vim.getVisualSelection()
+  vim.cmd('noau normal! "vy"')
+  local text = vim.fn.getreg("v")
+  vim.fn.setreg("v", {})
+
+  text = string.gsub(text, "\n", "")
+  if #text > 0 then
+    return text
+  else
+    return ""
+  end
+end
+
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
@@ -137,9 +150,43 @@ return {
       }),
       desc = "Goto Symbol (Workspace)",
     },
+    {
+      "<leader>ss",
+      function()
+        local text = vim.getVisualSelection()
+        require("telescope.builtin").current_buffer_fuzzy_find({ default_text = text })
+      end,
+      desc = "Current Buffer Grep Selection",
+      mode = "v",
+    },
+
+    {
+      "<leader><leader>",
+      function()
+        local text = vim.getVisualSelection()
+        require("telescope.builtin").live_grep({ default_text = text })
+      end,
+      desc = "Live Grep Selection",
+      mode = "v",
+    },
   },
   opts = {
+    pickers = {
+      buffers = {
+        mappings = {
+          i = {
+            ["<c-d>"] = actions.delete_buffer + actions.move_to_top,
+          },
+        },
+      },
+    },
     defaults = {
+      layout_strategy = "flex",
+      layout_config = {
+        flex = {
+          width = 0.95,
+        },
+      },
       prompt_prefix = " ",
       selection_caret = " ",
       mappings = {
