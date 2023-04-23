@@ -56,7 +56,6 @@ return {
   version = false, -- telescope did only one release, so use HEAD for now
   keys = {
     { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
-    { "<leader>/", Util.telescope("live_grep"), desc = "Find in Files (Grep)" },
     { "<leader>n", Util.telescope("git_files"), desc = "Find Files" },
     {
       "<leader>N",
@@ -72,11 +71,7 @@ return {
       "<leader>fd",
       Util.telescope("find_files", {
         cwd = "~/repos/",
-        prompt_title = "Repos",
-        layout_config = {
-          height = 0.85,
-          width = 0.75,
-        },
+        prompt_title = "Find File in Repos",
       }),
       desc = "Find Repo Files",
     },
@@ -85,11 +80,7 @@ return {
       Util.telescope("live_grep", {
         cwd = "~/repos/",
         path_display = { "truncate", shorten = { len = 1, exclude = { 1, -1 } } },
-        prompt_title = "Repos",
-        layout_config = {
-          height = 0.85,
-          width = 0.75,
-        },
+        prompt_title = "Grep in Repos",
       }),
       desc = "Find in Repo Files",
     },
@@ -100,11 +91,28 @@ return {
     -- search
     { "<C-s>", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
     { "<leader>ss", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
-    { "<leader>sd", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
+    {
+      "<leader>ss",
+      function()
+        local text = vim.getVisualSelection()
+        require("telescope.builtin").current_buffer_fuzzy_find({ default_text = text })
+      end,
+      desc = "Current Buffer Grep Selection",
+      mode = "v",
+    },
     {
       "<leader><space>",
       Util.telescope("live_grep", { path_display = { "truncate", shorten = { len = 3, exclude = { 1, -1 } } } }),
       desc = "Grep (root dir)",
+    },
+    {
+      "<leader><leader>",
+      function()
+        local text = vim.getVisualSelection()
+        require("telescope.builtin").live_grep({ default_text = text })
+      end,
+      desc = "Live Grep Selection",
+      mode = "v",
     },
     { "<leader>sG", Util.telescope("live_grep", { cwd = false }), desc = "Grep (cwd)" },
     { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
@@ -113,6 +121,7 @@ return {
     { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
     { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
     { "<leader>sw", Util.telescope("grep_string"), desc = "Word (root dir)" },
+    { "<leader>sd", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
     { "<leader>sW", Util.telescope("grep_string", { cwd = false }), desc = "Word (cwd)" },
     {
       "<leader>sD",
@@ -149,25 +158,6 @@ return {
         },
       }),
       desc = "Goto Symbol (Workspace)",
-    },
-    {
-      "<leader>ss",
-      function()
-        local text = vim.getVisualSelection()
-        require("telescope.builtin").current_buffer_fuzzy_find({ default_text = text })
-      end,
-      desc = "Current Buffer Grep Selection",
-      mode = "v",
-    },
-
-    {
-      "<leader><leader>",
-      function()
-        local text = vim.getVisualSelection()
-        require("telescope.builtin").live_grep({ default_text = text })
-      end,
-      desc = "Live Grep Selection",
-      mode = "v",
     },
   },
   opts = {
