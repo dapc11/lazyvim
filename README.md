@@ -17,4 +17,3 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 "iamcco/markdown-preview.nvim",
 "sindrets/diffview.nvim",
 "nvim-telescope/telescope.nvim",
-"mbbill/undotree",
