@@ -18,4 +18,3 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 "sindrets/diffview.nvim",
 "nvim-telescope/telescope.nvim",
 "mbbill/undotree",
-"kevinhwang91/nvim-bqf",
