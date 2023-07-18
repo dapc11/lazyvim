@@ -23,23 +23,6 @@ return {
     ---@param highlights Highlights
     ---@param colors ColorScheme
     on_highlights = function(highlights, colors)
-      highlights.LeapBackdrop = { link = "Comment" }
-      highlights.LeapMatch = {
-        fg = colors.fg_dark,
-        underline = true,
-        bold = true,
-      }
-      highlights.LeapLabelPrimary = {
-        fg = colors.blue,
-        underline = true,
-        bold = true,
-      }
-      highlights.LeapLabelSecondary = {
-        fg = colors.red,
-      }
-      highlights.LeapLabelSelected = {
-        fg = colors.green1,
-      }
       highlights.WinSeparator = { bg = colors.none, fg = colors.blue7 }
       highlights.NvimTreeWinSeparator = { link = "WinSeparator" }
       highlights.FloatBorder = { bg = colors.bg, fg = colors.blue7 }
