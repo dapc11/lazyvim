@@ -13,6 +13,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "lspinfo",
     "lir",
     "DressingSelect",
+    "OverseerList",
     "tsplayground",
     "Markdown",
     "git",
