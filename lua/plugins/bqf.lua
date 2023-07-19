@@ -10,6 +10,7 @@ return {
       filter = "<C-n>",
       split = "<C-s>",
       vsplit = "<C-v>",
+      ptoggleitem = "<C-p>",
     },
   },
   config = function(_, opts)
