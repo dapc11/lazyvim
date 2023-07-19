@@ -27,7 +27,6 @@ return {
       end,
       desc = "Find Plugin File",
     },
-    { "<C-f>", require("telescope.builtin").current_buffer_fuzzy_find, desc = "Find in Current Buffer" },
     { "<leader>n", require("telescope.builtin").git_files, desc = "Find Tracked Files" },
     {
       "<leader>N",

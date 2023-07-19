@@ -15,3 +15,10 @@ cnoreabbrev <expr> Qa ((getcmdtype() is# ':' && getcmdline() is# 'Qa')?('qa'):('
 cnoreabbrev <expr> WQ ((getcmdtype() is# ':' && getcmdline() is# 'WQ')?('wq'):('WQ'))
 cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('Wq'))
 ]])
+
+vim.keymap.set(
+  "n",
+  "<C-f>",
+  require("telescope.builtin").current_buffer_fuzzy_find,
+  { desc = "Find in Current Buffer" }
+)
