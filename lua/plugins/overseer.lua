@@ -15,8 +15,18 @@ end, {})
 return {
   "stevearc/overseer.nvim",
   keys = {
-    { "<leader>cw", "<cmd>WatchRun<CR>", desc = "Watch" },
-    { "<leader>ce", "<cmd>OverseerRun<CR>", desc = "Run" },
+    { "<leader>cw", "<cmd>WatchRun<CR>", desc = "Overseer Watch" },
+    { "<leader>ca", "<cmd>OverseerTaskAction<cr>", desc = "Overseer Task Action" },
+    { "<leader>cb", "<cmd>OverseerBuild<cr>", desc = "Overseer Build" },
+    { "<leader>cc", "<cmd>OverseerClose<cr>", desc = "Overseer Close" },
+    { "<leader>cd", "<cmd>OverseerDeleteBundle<cr>", desc = "Overseer Delete Bundle" },
+    { "<leader>cl", "<cmd>OverseerLoadBundle<cr>", desc = "Overseer Load Bundle" },
+    { "<leader>cs", "<cmd>OverseerSaveBundle<cr>", desc = "Overseer Save Bundle" },
+    { "<leader>co", "<cmd>OverseerOpen<cr>", desc = "Overseer Open" },
+    { "<leader>cq", "<cmd>OverseerQuickAction<cr>", desc = "Quick Action" },
+    { "<leader>ce", "<cmd>OverseerRun<cr>", desc = "Overseer Run" },
+    { "<leader>cE", "<cmd>OverseerRunCmd<cr>", desc = "Run Command" },
+    { "<leader>ct", "<cmd>OverseerToggle<cr>", desc = "Overseer Toggle" },
   },
   opts = {
     component_aliases = {
