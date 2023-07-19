@@ -39,7 +39,7 @@ return {
       desc = "Find Tracked Files",
     },
     { "<leader>b", require("telescope.builtin").buffers, desc = "Find Buffers" },
-    { "<leader>r", require("telescope.builtin").oldfiles, desc = "Find Tracked Files" },
+    { "<leader>r", require("telescope.builtin").oldfiles, desc = "Find Recent Files" },
     { "<leader><leader>", require("telescope.builtin").live_grep, desc = "Live Grep" },
   },
   opts = {
