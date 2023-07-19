@@ -15,4 +15,3 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 "AckslD/nvim-pytrize.lua"
 "AckslD/swenv.nvim"
 "iamcco/markdown-preview.nvim",
-"nvim-telescope/telescope.nvim",
