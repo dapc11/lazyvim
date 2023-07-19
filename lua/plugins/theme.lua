@@ -24,7 +24,6 @@ return {
     ---@param colors ColorScheme
     on_highlights = function(highlights, colors)
       highlights.WinSeparator = { bg = colors.none, fg = colors.blue7 }
-      highlights.NvimTreeWinSeparator = { link = "WinSeparator" }
       highlights.FloatBorder = { bg = colors.bg, fg = colors.blue7 }
       highlights.TelescopeBorder = { bg = colors.bg, fg = colors.blue7 }
       highlights.NeogitDiffAdd = { fg = colors.green }
