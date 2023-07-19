@@ -12,14 +12,14 @@ return {
       "DiffviewFocusFiles",
     },
     keys = {
-      { "<leader>gq", vim.cmd.DiffviewClose, "Diffview Close" },
-      { "<leader>gd", vim.cmd.DiffviewOpen, "Diffview (all modified files)" },
+      { "<leader>gq", vim.cmd.DiffviewClose, desc = "Diffview Close" },
+      { "<leader>gd", vim.cmd.DiffviewOpen, desc = "Diffview (all modified files)" },
       {
         "<leader>gl",
         function()
           vim.cmd.DiffviewFileHistory("%")
         end,
-        "Diffview current file history",
+        desc = "Diffview current file history",
       },
     },
   },
