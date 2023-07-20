@@ -31,5 +31,4 @@ local function map(mode, lhs, rhs, opts)
 end
 
 map("n", "<C-f>", require("telescope.builtin").current_buffer_fuzzy_find, { desc = "Find in Current Buffer" })
-map("n", "<leader>s", "<C-W>s", { desc = "Split window below", remap = true })
 map("n", "<leader>v", "<C-W>v", { desc = "Split window right", remap = true })
