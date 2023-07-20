@@ -27,16 +27,6 @@ return {
       end,
       desc = "Find Plugin File",
     },
-    { "<leader>n", require("telescope.builtin").git_files, desc = "Find Tracked Files" },
-    {
-      "<leader>N",
-      function()
-        require("telescope.builtin").git_files({
-          git_command = { "git", "ls-files", "--modified", "--exclude-standard" },
-        })
-      end,
-      desc = "Find Tracked Files",
-    },
     { "<leader>b", require("telescope.builtin").buffers, desc = "Find Buffers" },
     { "<leader>r", require("telescope.builtin").oldfiles, desc = "Find Recent Files" },
     { "<leader><leader>", require("telescope.builtin").live_grep, desc = "Live Grep" },
