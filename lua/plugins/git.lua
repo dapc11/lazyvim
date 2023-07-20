@@ -14,8 +14,8 @@ return {
     "dapc11/vim-fugitive",
     lazy = false,
     keys = {
-      { "<leader>gpp", "<cmd>Git push origin HEAD:refs/for/master<cr>", desc = "Push Gerrit" },
-      { "<leader>gpP", "<cmd>Git push<cr>", desc = "Push Regular" },
+      { "<leader>gpg", "<cmd>Git push origin HEAD:refs/for/master<cr>", desc = "Push Gerrit" },
+      { "<leader>gpp", "<cmd>Git push<cr>", desc = "Push Regular" },
       { "<leader>gb", "<cmd>Git blame<cr>", desc = "Git Blame" },
       { "<leader>gf", "<cmd>Git fetch<cr>", desc = "Git Fetch" },
       { "<leader>gr", "<cmd>Git pull --rebase<cr>", desc = "Git Pull Rebase" },
