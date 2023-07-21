@@ -30,6 +30,26 @@ return {
     { "<leader>b", require("telescope.builtin").buffers, desc = "Find Buffers" },
     { "<leader>r", require("telescope.builtin").oldfiles, desc = "Find Recent Files" },
     { "<leader><leader>", require("telescope.builtin").live_grep, desc = "Live Grep" },
+    {
+      "<leader><leader>",
+      function()
+        local function getVisualSelection()
+          vim.cmd('noau normal! "vy"')
+          local text = vim.fn.getreg("v")
+          vim.fn.setreg("v", {})
+
+          text = string.gsub(text, "\n", "")
+          if #text > 0 then
+            return text
+          else
+            return ""
+          end
+        end
+        require("telescope.builtin").live_grep({ default_text = getVisualSelection() })
+      end,
+      mode = "v",
+      desc = "Live Grep Selection",
+    },
   },
   opts = {
     defaults = {

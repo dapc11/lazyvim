@@ -29,6 +29,20 @@ local function map(mode, lhs, rhs, opts)
     vim.keymap.set(mode, lhs, rhs, opts)
   end
 end
+map("v", "<C-f>", function()
+  local function getVisualSelection()
+    vim.cmd('noau normal! "vy"')
+    local text = vim.fn.getreg("v")
+    vim.fn.setreg("v", {})
 
+    text = string.gsub(text, "\n", "")
+    if #text > 0 then
+      return text
+    else
+      return ""
+    end
+  end
+  require("telescope.builtin").current_buffer_fuzzy_find({ default_text = getVisualSelection() })
+end, { desc = "Current Buffer Grep Selection" })
 map("n", "<C-f>", require("telescope.builtin").current_buffer_fuzzy_find, { desc = "Find in Current Buffer" })
 map("n", "<leader>v", "<C-W>v", { desc = "Split window right", remap = true })
