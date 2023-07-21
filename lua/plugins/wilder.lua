@@ -30,29 +30,29 @@ return {
 
       local tokyonight = require("tokyonight.colors")
       local colors = tokyonight.setup()
-      local highlights = {
-        default = wilder.make_hl(
-          "WilderPmenu",
-          "Pmenu",
-          { { a = 1 }, { a = 1 }, { foreground = colors.fg, background = colors.bg } }
-        ),
-        accent = wilder.make_hl(
-          "WilderAccent",
-          "Pmenu",
-          { { a = 1 }, { a = 1 }, { foreground = colors.blue, bold = 1 } }
-        ),
-      }
       wilder.set_option(
         "renderer",
         wilder.renderer_mux({
           [":"] = wilder.popupmenu_renderer(wilder.popupmenu_border_theme({
             left = { wilder.popupmenu_devicons() },
-            highlighter = {
-              wilder.pcre2_highlighter(),
-              wilder.lua_fzy_highlighter(),
+            highlighter = wilder.lua_fzy_highlighter(),
+            highlights = {
+              default = wilder.make_hl(
+                "WilderPmenu",
+                "Pmenu",
+                { { a = 1 }, { a = 1 }, { foreground = colors.fg, background = colors.bg } }
+              ),
+              accent = wilder.make_hl(
+                "WilderAccent",
+                "Pmenu",
+                { { a = 1 }, { a = 1 }, { foreground = colors.blue, bold = 1 } }
+              ),
+              selected = wilder.make_hl(
+                "WilderAccent",
+                "Pmenu",
+                { { a = 1 }, { a = 1 }, { foreground = colors.blue, background = colors.bg_sidebar, bold = 1 } }
+              ),
             },
-            -- stylua: ignore
-            highlights = highlights,
           })),
         })
       )
