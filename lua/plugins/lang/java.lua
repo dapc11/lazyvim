@@ -92,7 +92,7 @@ return {
               },
               inlayHints = {
                 parameterNames = {
-                  enabled = "all", -- literals, all, none
+                  enabled = "all",
                 },
               },
               contentProvider = { preferred = "fernflower" },

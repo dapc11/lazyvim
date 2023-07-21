@@ -90,7 +90,6 @@ return {
       },
     },
   },
-  -- Ensure Go tools are installed
   {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)

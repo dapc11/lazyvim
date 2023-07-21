@@ -1,5 +1,4 @@
 return {
-  -- required fields
   name = "Push to Sandbox",
   builder = function(_)
     return {

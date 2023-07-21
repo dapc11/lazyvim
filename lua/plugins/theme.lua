@@ -10,7 +10,6 @@ return {
       sidebars = "dark",
       floats = "dark",
     },
-    ---@param colors ColorScheme
     on_colors = function(colors)
       colors.bg = "#24292e"
       colors.bg_sidebar = "#282c34"
@@ -20,8 +19,6 @@ return {
       colors.git.delete = "#e06c75"
       colors.red = "#e06c75"
     end,
-    ---@param highlights Highlights
-    ---@param colors ColorScheme
     on_highlights = function(highlights, colors)
       highlights.WinSeparator = { bg = colors.none, fg = colors.blue7 }
       highlights.FloatBorder = { bg = colors.bg, fg = colors.blue7 }

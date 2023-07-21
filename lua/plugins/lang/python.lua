@@ -40,7 +40,7 @@ return {
                 },
                 autoImportCompletions = true,
                 autoSearchPaths = true,
-                diagnosticMode = "openFilesOnly", -- or workspace
+                diagnosticMode = "openFilesOnly",
                 useLibraryCodeForTypes = true,
               },
             },
