@@ -87,8 +87,8 @@ return {
       "mfussenegger/nvim-dap-python",
       -- stylua: ignore
       keys = {
-        { "<leader>dPt", function() require('dap-python').test_method() end, desc = "Debug Method" },
-        { "<leader>dPc", function() require('dap-python').test_class() end, desc = "Debug Class" },
+        { "<leader>cdPt", function() require('dap-python').test_method() end, desc = "Debug Method" },
+        { "<leader>cdPc", function() require('dap-python').test_class() end, desc = "Debug Class" },
       },
       config = function()
         pcall(function()
@@ -102,6 +102,6 @@ return {
     "linux-cultist/venv-selector.nvim",
     cmd = "VenvSelect",
     opts = {},
-    keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
+    keys = { { "<leader>ccv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
   },
 }
