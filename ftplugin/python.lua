@@ -49,3 +49,11 @@ else
     vim.env.PYTHONPATH = nil
   end
 end
+
+local bufnr = vim.api.nvim_get_current_buf()
+require("which-key").register({
+  -- stylua: ignore
+  ["<leader>cv"] = { "<cmd>:VenvSelect<cr>", "Select VirtualEnv", buffer = bufnr },
+  ["<leader>ctm"] = { require("dap-python").test_method, "Debug Method", buffer = bufnr },
+  ["<leader>ctc"] = { require("dap-python").test_class, "Debug Class", buffer = bufnr },
+})
