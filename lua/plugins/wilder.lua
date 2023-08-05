@@ -32,11 +32,6 @@ return {
             left = { wilder.popupmenu_devicons() },
             highlighter = wilder.lua_fzy_highlighter(),
             highlights = {
-              default = wilder.make_hl(
-                "WilderPmenu",
-                "Pmenu",
-                { { a = 1 }, { a = 1 }, { foreground = colors.fg, background = colors.bg } }
-              ),
               accent = wilder.make_hl(
                 "WilderAccent",
                 "Pmenu",
@@ -45,7 +40,7 @@ return {
               selected = wilder.make_hl(
                 "WilderAccent",
                 "Pmenu",
-                { { a = 1 }, { a = 1 }, { foreground = colors.blue, background = colors.bg_sidebar, bold = 1 } }
+                { { a = 1 }, { a = 1 }, { foreground = colors.blue, background = colors.bg_highlight, bold = 1 } }
               ),
             },
           })),

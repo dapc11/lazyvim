@@ -19,10 +19,12 @@ return {
         colors.git.add = "#98c379"
         colors.git.delete = "#e06c75"
         colors.red = "#e06c75"
+        colors.hint = colors.blue
       end,
       on_highlights = function(highlights, colors)
         highlights.WinSeparator = { bg = colors.none, fg = colors.blue7 }
         highlights.NeoTreeWinSeparator = { bg = colors.none, fg = colors.bg_sidebar }
+        highlights.BufferTabpages = { bg = colors.bg_sidebar, fg = colors.none }
         highlights.NeoTreeStatusLineNC = { bg = colors.bg_sidebar, fg = colors.none }
         highlights.NeoTreeStatusLine = { bg = colors.bg_sidebar, fg = colors.bg_sidebar }
         highlights.FloatBorder = { bg = colors.bg, fg = colors.blue7 }
@@ -32,14 +34,26 @@ return {
         highlights.TelescopePromptNormal = { bg = colors.bg_sidebar }
         highlights.NeogitDiffAdd = { fg = colors.green }
         highlights.NeogitDiffDelete = { fg = colors.red }
+        highlights.NeogitDiffAddHighlight = { fg = colors.green, bg = colors.bg_sidebar }
+        highlights.NeogitDiffDeleteHighlight = { fg = colors.red, bg = colors.bg_sidebar }
+        highlights.NeogitDiffHeaderHighlight = { fg = colors.yellow, bg = colors.bg_sidebar }
         highlights.NeogitDiffContextHighlight = { fg = colors.fg }
         highlights.NeogitHunkHeaderHighlight = { fg = colors.fg, bold = true }
         highlights.NeogitHunkHeader = { fg = colors.blue, bold = true }
-        highlights.WhichKeyFloat = { bg = colors.bg }
+        highlights.WhichKeyFloat = { bg = colors.bg_sidebar }
+        highlights.NormalFloat = { bg = colors.bg_sidebar }
+        highlights.Pmenu = { bg = colors.bg_sidebar }
+        highlights.NoicePopupmenu = { bg = colors.bg_sidebar }
+        highlights.NoicePopup = { bg = colors.bg_sidebar }
+        highlights.TabLine = { bg = colors.bg_sidebar }
+        highlights.TabLineSel = { fg = colors.blue, bg = colors.bg_sidebar }
+        highlights.TabLineFill = { bg = colors.bg_sidebar }
         highlights.BqfPreviewFloat = { bg = colors.bg }
         highlights.Directory = { bold = true }
         highlights.NvimTreeFileDirty = { fg = colors.git.change, bold = true }
         highlights.NvimTreeGitDirty = { fg = colors.git.change, bold = true }
+        highlights.DiagnosticInfo = { fg = colors.blue }
+        highlights.DiagnosticHint = { fg = colors.blue }
       end,
     },
   },
