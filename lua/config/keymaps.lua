@@ -15,17 +15,12 @@ cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('
 -- End Unimpaired
 
 local function map(mode, lhs, rhs, opts)
-  local keys = require("lazy.core.handler").handlers.keys
-  ---@cast keys LazyKeysHandler
-  -- do not create the keymap if a lazy keys handler exists
-  if not keys.active[keys.parse({ lhs, mode = mode }).id] then
-    opts = opts or {}
-    opts.silent = opts.silent ~= false
-    if opts.remap and not vim.g.vscode then
-      opts.remap = nil
-    end
-    vim.keymap.set(mode, lhs, rhs, opts)
+  opts = opts or {}
+  opts.silent = opts.silent ~= false
+  if opts.remap and not vim.g.vscode then
+    opts.remap = nil
   end
+  vim.keymap.set(mode, lhs, rhs, opts)
 end
 map("v", "<C-f>", function()
   local function getVisualSelection()
@@ -48,3 +43,33 @@ map("n", "<leader>fn", "<CMD>Telescope notify<cr>", { desc = "Notifications" })
 map("n", "<C-x>", function()
   require("notify").dismiss({ silent = true, pending = true })
 end, { desc = "Dismiss all Notifications" })
+
+map({ "n", "v", "x", "o" }, "ä", "}zz")
+map({ "n", "v", "x", "o" }, "ö", "{zz")
+map({ "n", "v", "x", "o" }, "<C-d>", "<C-d>zz")
+map({ "n", "v", "x", "o" }, "<C-u>", "<C-u>zz")
+
+-- Close all fold except the current one.
+map("n", "zv", "zMzvzz")
+
+-- Close current fold when open. Always open next fold.
+map("n", "z<Down>", "zcjzOzz")
+
+-- Close current fold when open. Always open previous fold.
+map("n", "z<Up>", "zckzOzz")
+
+map("n", "W", ":noautocmd w<CR>")
+
+-- Move to window using the <ctrl> arrow keys
+map("n", "<C-Left>", "<C-w>h", { desc = "Go to left window", remap = true })
+map("n", "<C-Down>", "<C-w>j", { desc = "Go to lower window", remap = true })
+map("n", "<C-Up>", "<C-w>k", { desc = "Go to upper window", remap = true })
+map("n", "<C-Right>", "<C-w>l", { desc = "Go to right window", remap = true })
+
+-- Move Lines
+map("n", "<S-Down>", "<cmd>m .+1<cr>==", { desc = "Move down" })
+map("n", "<S-Up>", "<cmd>m .-2<cr>==", { desc = "Move up" })
+map("i", "<S-Down>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
+map("i", "<S-Up>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
+map("v", "<S-Down>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
+map("v", "<S-Up>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
