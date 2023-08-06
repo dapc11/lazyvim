@@ -11,7 +11,7 @@ return {
       wilder.set_option("pipeline", {
         wilder.branch(
           wilder.python_file_finder_pipeline({
-            file_command = { "rg", "--files" },
+            file_command = { "fd", "-tf" },
             dir_command = { "fd", "-td" },
             filters = { "fuzzy_filter" },
           }),
@@ -32,6 +32,11 @@ return {
             left = { wilder.popupmenu_devicons() },
             highlighter = wilder.lua_fzy_highlighter(),
             highlights = {
+              default = wilder.make_hl(
+                "WilderPmenu",
+                "Pmenu",
+                { { a = 1 }, { a = 1 }, { foreground = colors.fg, background = colors.bg_dark } }
+              ),
               accent = wilder.make_hl(
                 "WilderAccent",
                 "Pmenu",

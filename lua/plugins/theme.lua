@@ -12,25 +12,23 @@ return {
         floats = "dark",
       },
       on_colors = function(colors)
-        colors.bg = "#24292e"
-        colors.bg_sidebar = "#282c34"
-        colors.bg_float = "#24292e"
         colors.git.change = "#7aa2f7"
         colors.git.add = "#98c379"
         colors.git.delete = "#e06c75"
         colors.red = "#e06c75"
         colors.hint = colors.blue
+        colors.border_highlight = colors.blue
       end,
       on_highlights = function(highlights, colors)
         highlights.WinSeparator = { bg = colors.none, fg = colors.blue7 }
-        highlights.NeoTreeWinSeparator = { bg = colors.none, fg = colors.bg_sidebar }
+        highlights.NeoTreeWinSeparator = { bg = colors.bg_sidebar, fg = colors.bg_sidebar }
         highlights.BufferTabpages = { bg = colors.bg_sidebar, fg = colors.none }
         highlights.NeoTreeStatusLineNC = { bg = colors.bg_sidebar, fg = colors.none }
         highlights.NeoTreeStatusLine = { bg = colors.bg_sidebar, fg = colors.bg_sidebar }
         highlights.FloatBorder = { bg = colors.bg, fg = colors.blue7 }
         highlights.TelescopeBorder = { bg = colors.bg_sidebar, fg = colors.bg_sidebar }
         highlights.TelescopePromptBorder = { bg = colors.bg_sidebar, fg = colors.bg_sidebar }
-        highlights.TelescopePromptTitle = { bg = colors.bg_sidebar }
+        highlights.TelescopeTitle = { fg = colors.blue, bg = colors.bg_sidebar }
         highlights.TelescopePromptNormal = { bg = colors.bg_sidebar }
         highlights.NeogitDiffAdd = { fg = colors.green }
         highlights.NeogitDiffDelete = { fg = colors.red }
