@@ -42,6 +42,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = {
     "DiffviewFileHistory",
+    "DiffviewFiles",
   },
   callback = function()
     vim.cmd([[
