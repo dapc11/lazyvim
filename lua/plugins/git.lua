@@ -58,12 +58,12 @@ return {
     lazy = false,
     -- stylua: ignore
     keys = {
-      { "<leader>gpg", "<cmd>Git push origin HEAD:refs/for/master<cr>", desc = "Push Gerrit" },
-      { "<leader>gpp", "<cmd>Git push<cr>", desc = "Push Regular" },
-      { "<leader>gb",  "<cmd>Git blame<cr>", desc = "Git Blame" },
-      { "<leader>gf",  "<cmd>Git fetch<cr>", desc = "Git Fetch" },
-      { "<leader>gr",  "<cmd>Git pull --rebase<cr>", desc = "Git Pull Rebase" },
-      { "<leader>gL",  "<cmd>Git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit<cr>", desc = "Git log" },
+      { "<leader>gp", ":Git push origin HEAD:refs/for/master<cr>", desc = "Push Gerrit" },
+      { "<leader>gP", ":Git push<cr>", desc = "Push Regular" },
+      { "<leader>gb", ":Git blame<cr>", desc = "Git Blame" },
+      { "<leader>gf", ":Git fetch<cr>", desc = "Git Fetch" },
+      { "<leader>gr", ":Git pull --rebase<cr>", desc = "Git Pull Rebase" },
+      { "<leader>gl", ":Git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit<cr><cr>", desc = "Git log" },
     },
   },
   {
