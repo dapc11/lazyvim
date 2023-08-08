@@ -5,7 +5,6 @@ return {
     opts = {
       defaults = {
         ["<leader>g"] = { name = "+git" },
-        ["<leader>gp"] = { name = "+push" },
       },
     },
   },
@@ -46,7 +45,7 @@ return {
         map("n", "<leader>hu", gs.undo_stage_hunk, "Undo Stage Hunk")
         map("n", "<leader>hR", gs.reset_buffer, "Reset Buffer")
         map("n", "<leader>hp", gs.preview_hunk, "Preview Hunk")
-        map("n", "<leader>hb", function()
+        map("n", "<leader>hB", function()
           gs.blame_line({ full = true })
         end, "Blame Line")
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "Select Hunk")
@@ -60,7 +59,7 @@ return {
     keys = {
       { "<leader>gp", ":Git push origin HEAD:refs/for/master<cr>", desc = "Push Gerrit" },
       { "<leader>gP", ":Git push<cr>", desc = "Push Regular" },
-      { "<leader>gb", ":Git blame<cr>", desc = "Git Blame" },
+      { "<leader>hb", ":Git blame<cr>", desc = "Git Blame" },
       { "<leader>gf", ":Git fetch<cr>", desc = "Git Fetch" },
       { "<leader>gr", ":Git pull --rebase<cr>", desc = "Git Pull Rebase" },
       { "<leader>gl", ":Git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit<cr><cr>", desc = "Git log" },
@@ -95,9 +94,7 @@ return {
     "nvim-telescope/telescope.nvim",
     -- stylua: ignore
     keys = {
-      { "<leader>gB", require("telescope.builtin").git_branches, desc = "Checkout Branch" },
-      { "<leader>gC", require("telescope.builtin").git_commits, desc = "Checkout Commit" },
-      { "<leader>gc", nil },
+      { "<leader>gb", require("telescope.builtin").git_branches, desc = "branches" },
       { "<leader>n",  require("telescope.builtin").git_files, desc = "Find Tracked Files" },
       { "<leader>N",  function() require("telescope.builtin").git_files({ git_command = { "git", "ls-files", "--modified", "--exclude-standard" }, }) end, desc = "Find Tracked Files" },
     },
