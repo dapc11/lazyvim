@@ -12,20 +12,20 @@ return {
         floats = "dark",
       },
       on_colors = function(colors)
-        colors.red = "#e06c75"
         colors.git.change = colors.blue
         colors.git.add = colors.green
         colors.git.delete = colors.red
         colors.hint = colors.blue
+        colors.info = colors.blue
         colors.border_highlight = colors.blue
       end,
       on_highlights = function(highlights, colors)
-        highlights.WinSeparator = { bg = colors.none, fg = colors.blue7 }
+        highlights.WinSeparator = { bg = colors.none, fg = colors.blue }
         highlights.NeoTreeWinSeparator = { bg = colors.bg_sidebar, fg = colors.bg_sidebar }
         highlights.BufferTabpages = { bg = colors.bg_sidebar, fg = colors.none }
         highlights.NeoTreeStatusLineNC = { bg = colors.bg_sidebar, fg = colors.none }
         highlights.NeoTreeStatusLine = { bg = colors.bg_sidebar, fg = colors.bg_sidebar }
-        highlights.FloatBorder = { bg = colors.bg, fg = colors.blue7 }
+        highlights.FloatBorder = { bg = colors.bg, fg = colors.blue }
         highlights.TelescopeBorder = { bg = colors.bg_sidebar, fg = colors.bg_sidebar }
         highlights.TelescopePromptBorder = { bg = colors.bg_sidebar, fg = colors.bg_sidebar }
         highlights.TelescopeTitle = { fg = colors.blue, bg = colors.bg_sidebar }
@@ -47,11 +47,7 @@ return {
         highlights.TabLineSel = { fg = colors.blue, bg = colors.bg_sidebar }
         highlights.TabLineFill = { bg = colors.bg_sidebar }
         highlights.BqfPreviewFloat = { bg = colors.bg }
-        highlights.Directory = { bold = true }
-        highlights.NvimTreeFileDirty = { fg = colors.git.change, bold = true }
-        highlights.NvimTreeGitDirty = { fg = colors.git.change, bold = true }
-        highlights.DiagnosticInfo = { fg = colors.blue }
-        highlights.DiagnosticHint = { fg = colors.blue }
+        highlights.NeoTreeDirectoryName = { bold = true }
       end,
     },
   },
