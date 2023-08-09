@@ -12,10 +12,10 @@ return {
         floats = "dark",
       },
       on_colors = function(colors)
-        colors.git.change = "#7aa2f7"
-        colors.git.add = "#98c379"
-        colors.git.delete = "#e06c75"
         colors.red = "#e06c75"
+        colors.git.change = colors.blue
+        colors.git.add = colors.green
+        colors.git.delete = colors.red
         colors.hint = colors.blue
         colors.border_highlight = colors.blue
       end,
