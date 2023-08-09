@@ -6,11 +6,11 @@ return {
   },
   opts = {
     func_map = {
-      fzffilter = "<C-f>",
-      filter = "<C-n>",
-      split = "<C-s>",
-      vsplit = "<C-v>",
-      ptoggleitem = "<C-p>",
+      fzffilter = "f",
+      filter = "n",
+      split = "s",
+      vsplit = "v",
+      ptoggleitem = "p",
     },
   },
   config = function(_, opts)

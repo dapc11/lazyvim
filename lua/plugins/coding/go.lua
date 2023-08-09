@@ -81,7 +81,6 @@ return {
       test_runner = "go", -- one of {`go`, `richgo`, `dlv`, `ginkgo`, `gotestsum`}
       luasnip = true,
     },
-    event = { "CmdlineEnter" },
     ft = { "go", "gomod" },
     build = 'lua require("go.install").update_all_sync()',
   },
