@@ -25,6 +25,8 @@ require("lazy").setup({
         "tohtml",
         "rplugin",
         "tutor",
+        "editorconfig",
+        "netrwPlugin",
         "zipPlugin",
       },
     },
