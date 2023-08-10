@@ -35,7 +35,7 @@ return {
         highlights.NeogitDiffAddHighlight = { fg = colors.green, bg = colors.bg_sidebar }
         highlights.NeogitDiffDeleteHighlight = { fg = colors.red, bg = colors.bg_sidebar }
         highlights.NeogitDiffHeaderHighlight = { fg = colors.yellow, bg = colors.bg_sidebar }
-        highlights.NeogitDiffContextHighlight = { fg = colors.fg }
+        highlights.NeogitDiffContextHighlight = { bg = colors.bg }
         highlights.NeogitHunkHeaderHighlight = { fg = colors.fg, bold = true }
         highlights.NeogitHunkHeader = { fg = colors.blue, bold = true }
         highlights.WhichKeyFloat = { bg = colors.bg_sidebar }
