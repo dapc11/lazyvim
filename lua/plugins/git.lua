@@ -2,6 +2,7 @@ return {
   {
     "folke/which-key.nvim",
     optional = true,
+    enabled = false,
     opts = {
       defaults = {
         ["<leader>g"] = { name = "+git" },

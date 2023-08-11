@@ -86,10 +86,6 @@ return {
     dependencies = {
       "mfussenegger/nvim-dap-python",
       -- stylua: ignore
-      keys = {
-        { "<leader>cdPt", function() require('dap-python').test_method() end, desc = "Debug Method" },
-        { "<leader>cdPc", function() require('dap-python').test_class() end, desc = "Debug Class" },
-      },
       config = function()
         pcall(function()
           local path = require("mason-registry").get_package("debugpy"):get_install_path()

@@ -43,13 +43,4 @@ return {
       { "<leader>zz", "<cmd>Telescope live_grep cwd=~/notes<CR>", desc = "Find Note" },
     },
   },
-  {
-    "folke/which-key.nvim",
-    optional = true,
-    opts = {
-      defaults = {
-        ["<leader>z"] = { name = "+ZK" },
-      },
-    },
-  },
 }

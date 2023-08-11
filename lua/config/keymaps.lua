@@ -70,3 +70,12 @@ map("i", "<S-Up>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
 map("v", "<S-Down>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "<S-Up>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 map("n", "Q", ":tabclose<cr>", { desc = "Close tab" })
+
+local function disable_key(lhss, mode)
+  mode = mode or "n"
+  for _, lhs in ipairs(lhss) do
+    pcall(vim.keymap.del, mode, "<leader>" .. lhs)
+  end
+end
+
+disable_key({ "sM", "sm", "sna", "snd", "snh", "snl", "sC", "sa", "" })

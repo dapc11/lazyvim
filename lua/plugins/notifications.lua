@@ -2,7 +2,10 @@ return {
   {
     "rcarriga/nvim-notify",
     opts = {
-      render = "minimal",
+      max_height = 1,
+      render = "compact",
+      stages = "static",
+      timeout = 1000,
     },
     keys = {
       {

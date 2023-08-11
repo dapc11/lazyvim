@@ -22,26 +22,13 @@ local function openTerminal(direction)
   vim.cmd("startinsert")
 end
 
-vim.keymap.set("n", "<leader>tv", function()
+vim.keymap.set("n", "<leader>xv", function()
   openTerminal("vsplit")
 end, { desc = "Vsplit Term" })
-vim.keymap.set("n", "<leader>t-", function()
+vim.keymap.set("n", "<leader>x-", function()
   openTerminal("split")
-end)
-vim.keymap.set("n", "<leader>ts", function()
-  openTerminal("split")
-end)
+end, { desc = "Split Term" })
 vim.keymap.set("t", "<C-x>", "<C-\\><C-n>")
 vim.keymap.set("t", "<C-q>", "<C-\\><C-n>")
 vim.keymap.set("t", "<C-d>", "<C-\\><C-n>:q<CR>")
-return {
-  {
-    "folke/which-key.nvim",
-    optional = true,
-    opts = {
-      defaults = {
-        ["<leader>t"] = { name = "+terminal" },
-      },
-    },
-  },
-}
+return {}

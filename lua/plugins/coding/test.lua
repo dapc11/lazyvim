@@ -71,22 +71,13 @@ return {
     end,
     -- stylua: ignore
     keys = {
-        { "<leader>ctt", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run File" },
-        { "<leader>ctT", function() require("neotest").run.run(vim.loop.cwd()) end, desc = "Run All Test Files" },
-        { "<leader>ctr", function() require("neotest").run.run() end, desc = "Run Nearest" },
-        { "<leader>cts", function() require("neotest").summary.toggle() end, desc = "Toggle Summary" },
-        { "<leader>cto", function() require("neotest").output.open({ enter = true, auto_close = true }) end, desc = "Show Output" },
-        { "<leader>ctO", function() require("neotest").output_panel.toggle() end, desc = "Toggle Output Panel" },
-        { "<leader>ctS", function() require("neotest").run.stop() end, desc = "Stop" },
-    },
-  },
-  {
-    "folke/which-key.nvim",
-    optional = true,
-    opts = {
-      defaults = {
-        ["<leader>ct"] = { name = "+Test" },
-      },
+        { "<leader>tt", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run File" },
+        { "<leader>tT", function() require("neotest").run.run(vim.loop.cwd()) end, desc = "Run All Test Files" },
+        { "<leader>tr", function() require("neotest").run.run() end, desc = "Run Nearest" },
+        { "<leader>ts", function() require("neotest").summary.toggle() end, desc = "Toggle Summary" },
+        { "<leader>to", function() require("neotest").output.open({ enter = true, auto_close = true }) end, desc = "Show Output" },
+        { "<leader>tO", function() require("neotest").output_panel.toggle() end, desc = "Toggle Output Panel" },
+        { "<leader>tS", function() require("neotest").run.stop() end, desc = "Stop Execution" },
     },
   },
 }

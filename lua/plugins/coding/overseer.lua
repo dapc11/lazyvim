@@ -1,4 +1,4 @@
-vim.api.nvim_create_user_command("WatchRun", function()
+vim.api.nvim_create_user_command("OverseerWatchRun", function()
   local overseer = require("overseer")
   overseer.run_template({ name = "run" }, function(task)
     if task then
@@ -16,18 +16,16 @@ return {
   {
     "stevearc/overseer.nvim",
     keys = {
-      { "<leader>cow", "<cmd>WatchRun<CR>", desc = "Overseer Watch" },
-      { "<leader>coa", "<cmd>OverseerTaskAction<cr>", desc = "Overseer Task Action" },
-      { "<leader>cob", "<cmd>OverseerBuild<cr>", desc = "Overseer Build" },
-      { "<leader>coc", "<cmd>OverseerClose<cr>", desc = "Overseer Close" },
-      { "<leader>cod", "<cmd>OverseerDeleteBundle<cr>", desc = "Overseer Delete Bundle" },
-      { "<leader>col", "<cmd>OverseerLoadBundle<cr>", desc = "Overseer Load Bundle" },
-      { "<leader>cos", "<cmd>OverseerSaveBundle<cr>", desc = "Overseer Save Bundle" },
-      { "<leader>coo", "<cmd>OverseerOpen<cr>", desc = "Overseer Open" },
-      { "<leader>coq", "<cmd>OverseerQuickAction<cr>", desc = "Quick Action" },
-      { "<leader>cor", "<cmd>OverseerRun<cr>", desc = "Overseer Run" },
-      { "<leader>coR", "<cmd>OverseerRunCmd<cr>", desc = "Run Command" },
-      { "<leader>cot", "<cmd>OverseerToggle<cr>", desc = "Overseer Toggle" },
+      { "<leader>ow", ":OverseerWatchRun<cr>", desc = "Overseer Watch" },
+      { "<leader>oa", ":OverseerTaskAction<cr>", desc = "Overseer Task Action" },
+      { "<leader>oc", ":OverseerClose<cr>", desc = "Overseer Close" },
+      { "<leader>od", ":OverseerDeleteBundle<cr>", desc = "Overseer Delete Bundle" },
+      { "<leader>ol", ":OverseerLoadBundle<cr>", desc = "Overseer Load Bundle" },
+      { "<leader>os", ":OverseerSaveBundle<cr>", desc = "Overseer Save Bundle" },
+      { "<leader>oo", ":OverseerOpen<cr>", desc = "Overseer Open" },
+      { "<leader>oq", ":OverseerQuickAction<cr>", desc = "Quick Action" },
+      { "<leader>or", ":OverseerRun<cr>", desc = "Overseer Run" },
+      { "<leader>ot", ":OverseerToggle<cr>", desc = "Overseer Toggle" },
     },
     opts = {
       component_aliases = {
@@ -39,15 +37,6 @@ return {
         },
       },
       templates = { "builtin", "user.run", "user.run_local", "user.bob" },
-    },
-  },
-  {
-    "folke/which-key.nvim",
-    optional = true,
-    opts = {
-      defaults = {
-        ["<leader>co"] = { name = "+Overseer" },
-      },
     },
   },
 }
