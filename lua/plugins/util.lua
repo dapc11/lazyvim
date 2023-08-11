@@ -13,7 +13,7 @@ local function openTerminal(direction)
   vim.cmd("wincmd l")
   local currentTerminal = findTerminal()
 
-  if currentTerminal == nil then
+  if currentTerminal ~= nil then
     vim.cmd("buf " .. currentTerminal)
   else
     vim.cmd("term")
