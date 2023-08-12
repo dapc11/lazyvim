@@ -78,4 +78,36 @@ local function disable_key(lhss, mode)
   end
 end
 
-disable_key({ "sM", "sm", "sna", "snd", "snh", "snl", "sC", "sa", "" })
+disable_key({
+  "sM",
+  "sm",
+  "sna",
+  "snd",
+  "snh",
+  "snl",
+  "sC",
+  "sa",
+  "|",
+  "uf",
+  "us",
+  "uw",
+  "uc",
+  "uC",
+  "ul",
+  "un",
+  "ud",
+  "ur",
+  "ui",
+})
+local Util = require("lazyvim.util")
+map("n", "<leader>Ud", Util.toggle_diagnostics, { desc = "Toggle Diagnostics" })
+local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
+map("n", "<leader>Uc", function()
+  Util.toggle("conceallevel", false, { 0, conceallevel })
+end, { desc = "Toggle Conceal" })
+map(
+  "n",
+  "<leader>Ur",
+  "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
+  { desc = "Redraw / clear hlsearch / diff update" }
+)

@@ -58,23 +58,32 @@ return {
       winblend = 0,
       mappings = {
         i = {
-          ["<C-p>"] = action_layout.toggle_preview,
-          ["<C-c>"] = actions.close,
+          ["<c-q>"] = function(...)
+            return require("trouble.providers.telescope").smart_open_with_trouble(...)
+          end,
+          ["<c-i>"] = function()
+            local action_state = require("telescope.actions.state")
+            local line = action_state.get_current_line()
+            require("lazyvim.util").telescope("find_files", { no_ignore = true, default_text = line })()
+          end,
+          ["<c-p>"] = action_layout.toggle_preview,
+          ["<c-c>"] = actions.close,
           ["<esc>"] = actions.close,
-          ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
           ["<s-tab>"] = actions.toggle_selection + actions.move_selection_previous,
           ["<tab>"] = actions.toggle_selection + actions.move_selection_next,
-          ["<C-Down>"] = actions.cycle_history_next,
-          ["<C-Up>"] = actions.cycle_history_prev,
+          ["<c-Down>"] = actions.cycle_history_next,
+          ["<c-Up>"] = actions.cycle_history_prev,
           ["<CR>"] = actions.select_default,
-          ["<C-h>"] = actions.select_horizontal,
-          ["<C-v>"] = actions.select_vertical,
-          ["<C-o>"] = actions.select_tab,
+          ["<c-h>"] = actions.select_horizontal,
+          ["<c-v>"] = actions.select_vertical,
+          ["<c-o>"] = actions.select_tab,
         },
         n = {
           ["<c-c>"] = actions.close,
           ["<c-p>"] = action_layout.toggle_preview,
-          ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+          ["<c-q>"] = function(...)
+            return require("trouble.providers.telescope").smart_open_with_trouble(...)
+          end,
           ["<s-tab>"] = actions.toggle_selection + actions.move_selection_previous,
           ["<tab>"] = actions.toggle_selection + actions.move_selection_next,
           ["<c-down>"] = actions.cycle_history_next,

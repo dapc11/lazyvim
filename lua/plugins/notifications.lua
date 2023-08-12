@@ -7,14 +7,16 @@ return {
       stages = "static",
       timeout = 1000,
     },
-    keys = {
-      {
-        "<C-x>",
-        function()
-          require("notify").dismiss({ silent = true, pending = true })
-        end,
-        desc = "Dismiss all Notifications",
-      },
-    },
+    keys = function()
+      return {
+        {
+          "<C-x>",
+          function()
+            require("notify").dismiss({ silent = true, pending = true })
+          end,
+          desc = "Dismiss all Notifications",
+        },
+      }
+    end,
   },
 }

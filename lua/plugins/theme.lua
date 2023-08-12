@@ -26,6 +26,7 @@ return {
         highlights.NeoTreeStatusLineNC = { bg = colors.bg_sidebar, fg = colors.none }
         highlights.NeoTreeStatusLine = { bg = colors.bg_sidebar, fg = colors.bg_sidebar }
         highlights.FloatBorder = { bg = colors.bg, fg = colors.blue }
+        highlights.HarpoonBorder = { bg = colors.bg, fg = colors.blue }
         highlights.TelescopeBorder = { bg = colors.bg_sidebar, fg = colors.bg_sidebar }
         highlights.TelescopePromptBorder = { bg = colors.bg_sidebar, fg = colors.bg_sidebar }
         highlights.TelescopeTitle = { fg = colors.blue, bg = colors.bg_sidebar }

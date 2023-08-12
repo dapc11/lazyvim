@@ -1,5 +1,11 @@
 local bufnr = vim.api.nvim_get_current_buf()
-require("which-key").register({
+local ok, wk = pcall(require, "which-key")
+
+if not ok then
+  return
+end
+
+wk.register({
   ["K"] = { vim.lsp.buf.hover, "Preview a Linked Note", buffer = bufnr },
   ["gd"] = { vim.lsp.buf.definition, "Follow Link", buffer = bufnr },
   ["<leader>zL"] = { vim.cmd.ZkBacklinks, "Open Notes Linking to Buffer", buffer = bufnr },
