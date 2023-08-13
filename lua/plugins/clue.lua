@@ -54,7 +54,7 @@ return {
           { mode = "n", keys = "<leader>q", desc = "+exit" },
           { mode = "n", keys = "<leader>t", desc = "+test" },
           { mode = "n", keys = "<leader>s", desc = "+search" },
-          { mode = "n", keys = "<leader>u", desc = "+ui" },
+          { mode = "n", keys = "<leader>U", desc = "+ui" },
           { mode = "n", keys = "<leader>w", desc = "+window" },
           { mode = "n", keys = "<leader>x", desc = "+utils" },
           { mode = "n", keys = "<leader>z", desc = "+notes" },
