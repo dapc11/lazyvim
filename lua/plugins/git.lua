@@ -1,15 +1,5 @@
 return {
   {
-    "folke/which-key.nvim",
-    optional = true,
-    enabled = false,
-    opts = {
-      defaults = {
-        ["<leader>g"] = { name = "+git" },
-      },
-    },
-  },
-  {
     "lewis6991/gitsigns.nvim",
     opts = {
       on_attach = function(buffer)
@@ -89,15 +79,6 @@ return {
       { "<leader>gq", vim.cmd.DiffviewClose, desc = "Diffview Close" },
       { "<leader>gd", vim.cmd.DiffviewOpen, desc = "Diffview (all modified files)" },
       { "<leader>gh", function() vim.cmd.DiffviewFileHistory("%") end, desc = "Diffview Current File History" },
-    },
-  },
-  {
-    "nvim-telescope/telescope.nvim",
-    -- stylua: ignore
-    keys = {
-      { "<leader>gb", require("telescope.builtin").git_branches, desc = "branches" },
-      { "<leader>n",  require("telescope.builtin").git_files, desc = "Find Tracked Files" },
-      { "<leader>N",  function() require("telescope.builtin").git_files({ git_command = { "git", "ls-files", "--modified", "--exclude-standard" }, }) end, desc = "Find Tracked Files" },
     },
   },
 }

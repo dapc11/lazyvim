@@ -39,7 +39,6 @@ return {
         highlights.NeogitDiffContextHighlight = { bg = colors.bg }
         highlights.NeogitHunkHeaderHighlight = { fg = colors.fg, bold = true }
         highlights.NeogitHunkHeader = { fg = colors.blue, bold = true }
-        highlights.WhichKeyFloat = { bg = colors.bg_sidebar }
         highlights.NormalFloat = { bg = colors.bg_sidebar }
         highlights.Pmenu = { bg = colors.bg_sidebar }
         highlights.NoicePopupmenu = { bg = colors.bg_sidebar }

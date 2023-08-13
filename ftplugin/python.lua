@@ -51,11 +51,8 @@ else
 end
 
 local bufnr = vim.api.nvim_get_current_buf()
-require("which-key").register({
-  -- stylua: ignore
-  ["<leader>cv"] = { "<cmd>:VenvSelect<cr>", "Select VirtualEnv", buffer = bufnr },
-  ["<leader>tm"] = { require("dap-python").test_method, "Debug Method", buffer = bufnr },
-  ["<leader>tc"] = { require("dap-python").test_class, "Debug Class", buffer = bufnr },
-  ["<leader>dm"] = { require("dap-python").test_method, "Debug Method", buffer = bufnr },
-  ["<leader>dc"] = { require("dap-python").test_class, "Debug Class", buffer = bufnr },
-})
+vim.keymap.set("n", "<leader>cv", "<cmd>:VenvSelect<cr>", { desc = "Select VirtualEnv", buffer = bufnr })
+vim.keymap.set("n", "<leader>tm", require("dap-python").test_method, { desc = "Debug Method", buffer = bufnr })
+vim.keymap.set("n", "<leader>tc", require("dap-python").test_class, { desc = "Debug Class", buffer = bufnr })
+vim.keymap.set("n", "<leader>dm", require("dap-python").test_method, { desc = "Debug Method", buffer = bufnr })
+vim.keymap.set("n", "<leader>dc", require("dap-python").test_class, { desc = "Debug Class", buffer = bufnr })

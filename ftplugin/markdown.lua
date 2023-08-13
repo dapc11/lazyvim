@@ -1,18 +1,21 @@
 local bufnr = vim.api.nvim_get_current_buf()
-local ok, wk = pcall(require, "which-key")
 
-if not ok then
-  return
-end
-
-wk.register({
-  ["K"] = { vim.lsp.buf.hover, "Preview a Linked Note", buffer = bufnr },
-  ["gd"] = { vim.lsp.buf.definition, "Follow Link", buffer = bufnr },
-  ["<leader>zL"] = { vim.cmd.ZkBacklinks, "Open Notes Linking to Buffer", buffer = bufnr },
-  ["<leader>zf"] = { vim.lsp.buf.definition, "Follow Link", buffer = bufnr },
-  ["<leader>za"] = { ":'<,'>lua vim.lsp.buf.range_code_action()<CR>", "Code Actions", buffer = bufnr, mode = "v" },
-  ["<leader>zl"] = { vim.cmd.ZkLinks, "Open Notes Linked by the Buffer", buffer = bufnr, mode = { "v", "n" } },
-})
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Preview a Linked Note", buffer = bufnr })
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Follow Link", buffer = bufnr })
+vim.keymap.set("n", "<leader>zL", vim.cmd.ZkBacklinks, { desc = "Open Notes Linking to Buffer", buffer = bufnr })
+vim.keymap.set("n", "<leader>zf", vim.lsp.buf.definition, { desc = "Follow Link", buffer = bufnr })
+vim.keymap.set(
+  "v",
+  "<leader>za",
+  ":'<,'>lua vim.lsp.buf.range_code_action()<CR>",
+  { desc = "Code Actions", buffer = bufnr }
+)
+vim.keymap.set(
+  { "v", "n" },
+  "<leader>zl",
+  vim.cmd.ZkLinks,
+  { desc = "Open Notes Linked by the Buffer", buffer = bufnr }
+)
 vim.cmd([[
 setlocal wrap spell spelllang=en_us
 ]])

@@ -22,24 +22,7 @@ local function map(mode, lhs, rhs, opts)
   end
   vim.keymap.set(mode, lhs, rhs, opts)
 end
-map("v", "<C-f>", function()
-  local function getVisualSelection()
-    vim.cmd('noau normal! "vy"')
-    local text = vim.fn.getreg("v")
-    vim.fn.setreg("v", {})
-
-    text = string.gsub(text, "\n", "")
-    if #text > 0 then
-      return text
-    else
-      return ""
-    end
-  end
-  require("telescope.builtin").current_buffer_fuzzy_find({ default_text = getVisualSelection() })
-end, { desc = "Current Buffer Grep Selection" })
-map("n", "<C-f>", require("telescope.builtin").current_buffer_fuzzy_find, { desc = "Find in Current Buffer" })
 map("n", "<leader>v", "<C-W>v", { desc = "Split window right", remap = true })
-map("n", "<leader>fn", "<CMD>Telescope notify<cr>", { desc = "Notifications" })
 map({ "n", "v", "x", "o" }, "ä", "}zz")
 map({ "n", "v", "x", "o" }, "ö", "{zz")
 map({ "n", "v", "x", "o" }, "<C-d>", "<C-d>zz")
@@ -70,6 +53,46 @@ map("i", "<S-Up>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
 map("v", "<S-Down>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "<S-Up>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 map("n", "Q", ":tabclose<cr>", { desc = "Close tab" })
+
+-- stylua: ignore
+local function getVisualSelection()
+  vim.cmd('noau normal! "vy"')
+  local text = vim.fn.getreg("v")
+  vim.fn.setreg("v", {})
+
+  text = string.gsub(text, "\n", "")
+  if #text > 0 then
+    return text
+  else
+    return ""
+  end
+end
+map("n", "<C-f>", function()
+  require("telescope.builtin").current_buffer_fuzzy_find()
+end, { desc = "Find in Current Buffer", remap = true })
+map("v", "<C-f>", function()
+  require("telescope.builtin").current_buffer_fuzzy_find({ default_text = getVisualSelection() })
+end, { desc = "Current Buffer Grep Selection" })
+map("n", "<leader>fp", function()
+  require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root })
+end, { desc = "Find Plugin File" })
+map("n", "<leader>r", function()
+  require("telescope.builtin").oldfiles()
+end, { desc = "Find Recent Files" })
+map("n", "<leader><leader>", function()
+  require("telescope.builtin").live_grep()
+end, { desc = "Live Grep" })
+map("v", "<leader><leader>", function()
+  require("telescope.builtin").live_grep({ default_text = getVisualSelection() })
+end, { desc = "Live Grep Selection" })
+
+map("n", "<leader>gb", require("telescope.builtin").git_branches, { desc = "branches" })
+map("n", "<leader>n", require("telescope.builtin").git_files, { desc = "Find Tracked Files" })
+map("n", "<leader>N", function()
+  require("telescope.builtin").git_files({ git_command = { "git", "ls-files", "--modified", "--exclude-standard" } })
+end, { desc = "Find Untracked Files" })
+map("n", "<leader>fn", "<CMD>Telescope notify<cr>", { desc = "Notifications" })
+map("n", "<C-p>", "<cmd>Telescope projects<cr>", { desc = "Find Project" })
 
 local function disable_key(lhss, mode)
   mode = mode or "n"
