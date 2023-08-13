@@ -59,6 +59,7 @@ return {
           { mode = "n", keys = "<leader>x", desc = "+utils" },
           { mode = "n", keys = "<leader>z", desc = "+notes" },
           { mode = "n", keys = "<leader><Tab>", desc = "+tabs" },
+          { mode = "n", keys = "gz", desc = "+surround" },
           -- Enhance this by adding descriptions for <Leader> mapping groups
           miniclue.gen_clues.builtin_completion(),
           miniclue.gen_clues.g(),

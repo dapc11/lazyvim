@@ -28,14 +28,11 @@ map({ "n", "v", "x", "o" }, "ö", "{zz")
 map({ "n", "v", "x", "o" }, "<C-d>", "<C-d>zz")
 map({ "n", "v", "x", "o" }, "<C-u>", "<C-u>zz")
 
--- Close all fold except the current one.
-map("n", "zv", "zMzvzz")
+map("n", "zv", "zMzvzz", { desc = "Close all folds except current one" })
 
--- Close current fold when open. Always open next fold.
-map("n", "z<Down>", "zcjzOzz")
+map("n", "z<Down>", "zcjzOzz", { desc = "Close current fold and open next" })
 
--- Close current fold when open. Always open previous fold.
-map("n", "z<Up>", "zckzOzz")
+map("n", "z<Up>", "zckzOzz", { desc = "Close current fold and open previous" })
 
 map("n", "W", ":noautocmd w<CR>")
 
@@ -94,10 +91,11 @@ end, { desc = "Find Untracked Files" })
 map("n", "<leader>fn", "<CMD>Telescope notify<cr>", { desc = "Notifications" })
 map("n", "<C-p>", "<cmd>Telescope projects<cr>", { desc = "Find Project" })
 
-local function disable_key(lhss, mode)
+local function disable_key(lhss, mode, prefix)
   mode = mode or "n"
+  prefix = prefix or "<leader>"
   for _, lhs in ipairs(lhss) do
-    pcall(vim.keymap.del, mode, "<leader>" .. lhs)
+    pcall(vim.keymap.del, mode, prefix .. lhs)
   end
 end
 
@@ -123,6 +121,8 @@ disable_key({
   "ui",
   "Þ",
 })
+disable_key({ "Þ", "%" }, "n", "g")
+disable_key({ "Þ" }, "n", "z")
 local Util = require("lazyvim.util")
 map("n", "<leader>Ud", Util.toggle_diagnostics, { desc = "Toggle Diagnostics" })
 local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
