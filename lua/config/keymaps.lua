@@ -121,6 +121,7 @@ disable_key({
   "ud",
   "ur",
   "ui",
+  "Þ",
 })
 local Util = require("lazyvim.util")
 map("n", "<leader>Ud", Util.toggle_diagnostics, { desc = "Toggle Diagnostics" })
